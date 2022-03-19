@@ -21,8 +21,12 @@ for i in range(1, nr_symbols+1):
 for i in range(1, nr_numbers+1):
     password.append(random.choice(numbers))
 
-print(password)
-random.shuffle(password_list)
-print(password)
+#print(password)
+random.shuffle(password)
+#print(password)
 
-print(f"Here is your password: {password}")
+final_password = ''
+for char in password:
+    final_password += char
+
+print(f"Here is your password: {final_password}")
