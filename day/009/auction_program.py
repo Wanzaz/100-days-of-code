@@ -1,6 +1,5 @@
 import os
 
-
 bidder_dictonary = {}
 
 user_name = input("What is your name?: ")
@@ -18,12 +17,14 @@ while other_bidders == 'yes':
 	other_bidders = input("Are there any other bidders? Type 'yes' or 'no': ")
 	bidder_dictonary[user_name] = user_bid
 
-biggest_bid = bidder_dictonary[user_name]
-winner_name = user_name
-for key, value in bidder_dictonary.items():
-	if biggest_bid < value:
-		biggest_bid = value
-		winner_name = key
+def find_highest_bid(bid_record):
+	biggest_bid = bidder_dictonary[user_name]
+	winner_name = user_name
+	for key, value in bidder_dictonary.items():
+		if biggest_bid < value:
+			biggest_bid = value
+			winner_name = key
 
-print(f"\nThe winner is {winner_name} a bid of ${biggest_bid}.")
+	print(f"\nThe winner is {winner_name} a bid of ${biggest_bid}.")
 
+find_highest_bid(bidder_dictonary)
