@@ -38,8 +38,8 @@ def compare(user_score, computer_score):
         return "Win, opponent went over"
     elif computer_score < user_score:
         return "Win"
-    else:
-        return "Lose"
+
+    return "Lose"
 
 def play_game():
     os.system("clear")
