@@ -21,27 +21,17 @@ def report(resources, money):
 def check_resources(type_of_coffee):
     """Check if there are enough resources to make a coffee"""
     if type_of_coffee != 'espresso':
-        if MENU[type_of_coffee]["ingredients"]["water"] > resources["water"]:
-            print("Sorry there is not enough water.")
-            return False
-        elif MENU[type_of_coffee]["ingredients"]["milk"]  > resources["milk"]:
+        if MENU[type_of_coffee]["ingredients"]["milk"]  > resources["milk"]:
             print("Sorry there is not enough milk")
             return False
-        elif MENU[type_of_coffee]["ingredients"]["coffee"] > resources["coffee"]:
-            print("Sorry there is not enough coffee")
-            return False
-        else:
-            return True
+    if MENU[type_of_coffee]["ingredients"]["water"] > resources["water"]:
+        print("Sorry there is not enough water.")
+        return False
+    elif MENU[type_of_coffee]["ingredients"]["coffee"] > resources["coffee"]:
+        print("Sorry there is not enough coffee")
+        return False
     else:
-        if MENU[type_of_coffee]["ingredients"]["water"] > resources["water"]:
-            print("Sorry there is not enough water.")
-            return False
-        elif MENU[type_of_coffee]["ingredients"]["coffee"] > resources["coffee"]:
-            print("Sorry there is not enough coffee")
-            return False
-        else:
-            return True
-
+        return True
 
 
 def processing_coins():
@@ -72,14 +62,9 @@ def checking_inserted_coins(selected_drink, money):
 def deduct_resources(selected_drink):
     """Deduce the resources from the automat."""
     if selected_drink != 'espresso':
-        resources["water"] = resources["water"] -  MENU[selected_drink]["ingredients"]["water"]
         resources["milk"] = resources["milk"] -  MENU[selected_drink]["ingredients"]["milk"]
-        resources["coffee"] = resources["coffee"] - MENU[selected_drink]["ingredients"]["coffee"]
-    else:
-        resources["water"] = resources["water"] -  MENU[selected_drink]["ingredients"]["water"]
-        resources["coffee"] = resources["coffee"] - MENU[selected_drink]["ingredients"]["coffee"]
-
-
+    resources["water"] = resources["water"] -  MENU[selected_drink]["ingredients"]["water"]
+    resources["coffee"] = resources["coffee"] - MENU[selected_drink]["ingredients"]["coffee"]
 
 
 def coffee_automat():
@@ -89,26 +74,18 @@ def coffee_automat():
     while should_continue:
         choice = input("What would you like? (espresso/latte/cappuccino): ")
         if choice == 'off':
-            # exit() 
             should_continue = False
 
         elif choice == 'report':
-            # print report
             report(resources, money)
 
         elif choice == 'espresso':
-            # check for report function and coin function
             if check_resources(choice): pass
             else: continue
             if checking_inserted_coins(choice, processing_coins()): pass
             else: continue
             money += 1.5
-
-            # minus the resources
             deduct_resources(choice)
-
-            # make espresso
-            # wish customer good day
             print("Here is you latte. Enjoy!")
 
         elif choice == 'latte':
@@ -117,8 +94,6 @@ def coffee_automat():
             if checking_inserted_coins(choice, processing_coins()): pass
             else: continue
             money += 2.5
-
-            # minus the resources
             deduct_resources(choice)
             print("Here is you latte. Enjoy!")
 
@@ -128,11 +103,10 @@ def coffee_automat():
             if checking_inserted_coins(choice, processing_coins()): pass
             else: continue
             money += 3
-
-            # minus the resources
             deduct_resources(choice)
             print("Here is you latte. Enjoy!")
         else:
             print("Please follow the instruction and try again!")
+
 
 coffee_automat()
