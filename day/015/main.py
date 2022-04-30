@@ -37,10 +37,10 @@ def check_resources(type_of_coffee):
 def processing_coins():
     """Counts inserted money by customer."""
     print("Please insert coins.")
-    quaters = float(input("how many quarters?: "))
-    dimes = float(input("how many dimes?: "))
-    nickles = float(input("how many nickles?: "))
-    pennies = float(input("how many pennies?: "))
+    quaters = int(input("how many quarters?: "))
+    dimes = int(input("how many dimes?: "))
+    nickles = int(input("how many nickles?: "))
+    pennies = int(input("how many pennies?: "))
     final_money = 0.25*quaters + 0.10*dimes + 0.05*nickles + 0.01*pennies 
 
     return final_money
