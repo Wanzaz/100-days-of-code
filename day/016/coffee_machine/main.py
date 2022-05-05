@@ -10,7 +10,6 @@ is_on = True
 
 while is_on:
     options = menu.get_items()
-    print(options)
     choice = input(f"What would you like? ({options}): ")
     if choice == "off":
         is_on = False
@@ -19,5 +18,5 @@ while is_on:
         money_machine.report()
     else:
         drink = menu.find_drink(choice)
-        if coffee_maker.is_resource_sufficient(drink) and money_machine.make_payment(drink.cost):
+        if coffee_maker.is_resource_sufficient(drink) and money_machine.make_payment(drink.cost): # I don't know why my ubuntu warns me with error None but it still works
             coffee_maker.make_coffee(drink)
