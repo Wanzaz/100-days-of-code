@@ -29,32 +29,33 @@ def extracting_colors(image_name):
 
     return color_palette
 
+def hirst_painting(color_list):
+    """Paint 10X10 dots square with random colors"""
+    number_of_dots = 100
+    tim.penup()
+    tim.hideturtle()
 
-def hirst_painting(list_of_colors, size):
-    for _ in range(1, size):
-        if size == size - 1:
-            size - 1
-        for index in range(1, size):
-            color = random.choice(list_of_colors)
-            tim.penup()
-            tim.dot(20, color)
-            tim.forward(40)
-        tim.left(90)
+    # set starting position
+    tim.setheading(225)
+    tim.forward(300)
+    tim.setheading(0)
 
- 
-def rest_of_painting(list_of_colors):
-    color = random.choice(list_of_colors)
-    tim.dot(20, color)
-    tim.forward(40)
-    color = random.choice(colors)
-    tim.dot(20, color)
+    # algorithm to paint 10X10 square
+    for dot_count in range(1, number_of_dots + 1):
+        tim.dot(20, random.choice(color_list))
+        tim.forward(50)
+
+        if dot_count % 10 == 0:
+            tim.setheading(90)
+            tim.forward(50)
+            tim.setheading(180)
+            tim.forward(500)
+            tim.setheading(0)
 
 
 colors = extracting_colors(image)
 
-for i in range(7, 1, -1):
-    hirst_painting(colors, i)
-rest_of_painting(colors)
+hirst_painting(colors)
 
 screen = Screen()
 screen.exitonclick()
