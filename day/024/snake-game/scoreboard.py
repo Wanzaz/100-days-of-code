@@ -8,7 +8,8 @@ class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
         self.score = 0
-        self.high_score = 0
+        with open("data.txt") as data:
+            self.high_score = int(data.read())
         self.color("white")
         self.penup()
         self.goto(0, 270)
@@ -20,22 +21,11 @@ class Scoreboard(Turtle):
         self.write(f"Score: {self.score} High Score : {self.high_score}", align=ALIGNMENT, font=FONT)
 
     def reset(self):
-        with open("data.txt", mode="r") as file:
-            data = file.read() 
-            self.high_score = [int(i) for i in data if i.isdigit()]
-            if self.score > self.high_score[0]:
-                with open("data.txt", mode="w") as file:
-                    file.write(f"{self.score}")
-        self.update_scoreboard()
+        if self.score > self.high_score:
+            self.high_score = self.score
+            with open("data.txt", mode="w") as data:
+                data.write(f"{self.high_score}")
         self.score = 0
-
-    def reset_start(self):
-        with open("data.txt", mode="r") as file:
-            data = file.read() 
-            self.high_score = [int(i) for i in data if i.isdigit()]
-            if self.score > self.high_score[0]:
-                with open("data.txt", mode="w") as file:
-                    file.write(f"{self.score}")
         self.update_scoreboard()
 
     def increase_score(self):
