@@ -1,13 +1,12 @@
 import turtle
 import pandas
-from turtle import Turtle
 
 FONT = ("Arial", 10, "normal")
 ALIGNMENT = "center"
 
-text = Turtle()
-text.hideturtle()
-text.penup()
+t = turtle.Turtle()
+t.hideturtle()
+t.penup()
 
 screen = turtle.Screen()
 screen.title("U.S. States Game")
@@ -16,19 +15,19 @@ screen.addshape(image)
 turtle.shape(image)
 
 data = pandas.read_csv("50_states.csv")
-correct_guesses = []
+guessed_states = []
 
+while len(guessed_states) < 50:
+    answer_state = screen.textinput(title=f"{len(guessed_states)}/50 States Correct", prompt="What's another state's name?r").title()
+    if answer_state == "Exit":
+        break
+    state_data = data[data.state == answer_state]
 
-game_is_on = True
-
-while game_is_on:
-    answer_state = screen.textinput(title=f"{len(correct_guesses)}/50 States Correct", prompt="What's another state's name?r")
-    converted_guess = answer_state.title()
-    state_guess = data[data.state == converted_guess]
-    all_states = data.state.str.match(converted_guess)
+    # all_states = list of states and value of boolean value (examples Ohio: True)
+    all_states = data.state.str.match(answer_state)
     for state in all_states:
         if state:
-            correct_guesses.append(converted_guess)
-            text.goto(int(state_guess.x), int(state_guess.y))
-            text.write(converted_guess, align=ALIGNMENT, font=FONT)
+            guessed_states.append(answer_state)
+            t.goto(int(state_data.x), int(state_data.y))
+            t.write(answer_state, align=ALIGNMENT, font=FONT)
 
