@@ -7,17 +7,30 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 1
+WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
 checkmarks = ""
+timer = None
+
 
 # ---------------------------- TIMER RESET ------------------------------- #
+def reset_timer():
+    global reps
+    global checkmarks
+    window.after_cancel(timer)
+    reps = 0
+    canvas.itemconfig(timer_text, text="00:00")
+    tittle_label.config(text="Timer")
+    checkmarks = ""
+    checkmarks_label.config(text=checkmarks)
+
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
     global reps
+    global checkmarks
     reps += 1
     work_sec = WORK_MIN * 60
     short_break_sec = SHORT_BREAK_MIN * 60
@@ -29,6 +42,9 @@ def start_timer():
     elif reps % 2 == 0:
         count_down(short_break_sec)
         tittle_label.config(text="Break", fg=PINK)
+        # displays ✓ for each session which user has done
+        checkmarks += "✓"
+        checkmarks_label.config(text=checkmarks)
     else:
         count_down(work_sec)
         tittle_label.config(text="Work", fg=GREEN)
@@ -36,7 +52,6 @@ def start_timer():
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
-    global checkmarks
     count_min = math.floor(count / 60) # returns largest integer <= x
     count_sec = count % 60
     # Dynamically Typed
@@ -45,12 +60,10 @@ def count_down(count):
 
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
-        window.after(1000, count_down, count - 1)
+        global timer
+        timer = window.after(1000, count_down, count - 1)
     else:
         start_timer()
-        if reps % 2 == 2:
-            checkmarks += "✓"
-            checkmarks_label.config(text=f"{checkmarks}")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -70,7 +83,7 @@ canvas.grid(column=1, row=1)
 tittle_label = Label(text="Timer", font=(FONT_NAME, 50), fg=GREEN, bg=YELLOW)
 tittle_label.grid(column=1, row=0)
 
-checkmarks_label = Label(text="", fg=GREEN, bg=YELLOW)
+checkmarks_label = Label(fg=GREEN, bg=YELLOW)
 checkmarks_label.grid(column=1, row=3)
 
 start_button = Button(text="Start", command=start_timer)
@@ -78,9 +91,8 @@ start_button.config(highlightbackground=YELLOW, highlightthickness=0)
 start_button.grid(column=0, row=2)
 
 reset_button = Button(text="Reset")
-reset_button.config(highlightbackground=YELLOW, highlightthickness=0)
+reset_button.config(highlightbackground=YELLOW, highlightthickness=0, command=reset_timer)
 reset_button.grid(column=2, row=2)
-
 
 
 window.mainloop()
