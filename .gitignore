@@ -1,3 +1,7 @@
+# Passwords for being able sending emails
+passwords.txt
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
