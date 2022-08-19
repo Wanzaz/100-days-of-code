@@ -8,8 +8,6 @@ import datetime as dt
 with open("../../../passwords.txt") as passwords_data:
     EMAIL_PASSWORD = passwords_data.readline()
 EMAIL_SENDER = "wanzaz.contact@gmail.com"
-PLACEHOLDER = "[NAME]"
-SUBJECT = "Your Birthday!"
 
 # Datetime 
 now = dt.datetime.now()
@@ -27,8 +25,7 @@ for index in range(0, num_of_names):
         rand_num = random.randint(1, 3)
         with open(f"./letter-templates/letter_{rand_num}.txt") as letter_file:
             letter_contents = letter_file.read()
-            email_body = letter_contents.replace(PLACEHOLDER, NAME)
-            print(email_body)
+            email_body = letter_contents.replace("[NAME]", NAME)
 
         # Send the letter generated letter to that person's email address.
         context = ssl.create_default_context()
@@ -37,5 +34,5 @@ for index in range(0, num_of_names):
             connection.sendmail(
                 from_addr=EMAIL_SENDER,
                 to_addrs=people_info["email"][NAME],
-                msg=f"Subject:{SUBJECT}\n\n {email_body}")
+                msg=f"Subject:Happy Birthday!\n\n {email_body}")
 
