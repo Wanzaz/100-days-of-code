@@ -2,7 +2,7 @@
 
 import requests
 
-OWN_Endpoint = "https://api.openweathermap.org/data/2.5/weather"
+OWN_Endpoint = "https://api.openweathermap.org/data/3.0/onecall"
 with open("../../../api_key.txt") as key:
     API_KEY = key.read()[:32]
 MY_LON = -118.24
