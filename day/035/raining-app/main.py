@@ -1,17 +1,16 @@
 # ---Using API Keys to Authenticate and Get the Weather from OpenWeatherMap---
 
+import os
 import ssl
 import json
 import smtplib
 import requests
 
 OWN_Endpoint = "https://api.openweathermap.org/data/3.0/onecall"
-with open("../../../api_key.txt") as key:
-    API_KEY = key.read()[:32]
+API_KEY = os.environ.get("OWN_API_KEY")
 MY_LON = -118.24
 MY_LAT = 34.052
-with open("../../../passwords.txt") as passwords_data:
-    EMAIL_PASSWORD = passwords_data.readline()
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_SENDER = "wanzaz.contact@gmail.com"
 EMAIL_RECEIVER = "wanzaz.contact@gmail.com"
 
