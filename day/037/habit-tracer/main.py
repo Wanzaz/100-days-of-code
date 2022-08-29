@@ -59,11 +59,11 @@ today = datetime.today().strftime(f"%Y%m%d")
 
 pixel_data = {
     "date": today,
-    "quantity": "5.11",
+    "quantity": input("How many kilometers did you cycle today? "),
 }
 
-# response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
-# print(response.text)
+response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
+print(response.text)
 
 
 # 4. Updating progress with PUT
@@ -81,7 +81,7 @@ pixel_update_data = {
 pixel_delete_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/20220828"
 
 
-response = requests.delete(url=pixel_delete_endpoint, headers=headers)
-print(response.text)
+# response = requests.delete(url=pixel_delete_endpoint, headers=headers)
+# print(response.text)
 
 
