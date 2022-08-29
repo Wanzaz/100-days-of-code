@@ -1,3 +1,10 @@
+# ---HTTP Requests---
+    # GET - read
+    # POST - upload
+    # PUT - update
+    # DELETE - delete
+
+
 import os
 import requests
 from datetime import datetime
@@ -55,5 +62,26 @@ pixel_data = {
     "quantity": "5.11",
 }
 
-response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
+# response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
+# print(response.text)
+
+
+# 4. Updating progress with PUT
+pixel_update_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/20220828"
+
+pixel_update_data = {
+    "quantity": "9.71",
+}
+
+# response = requests.put(url=pixel_update_endpoint, json=pixel_update_data, headers=headers)
+# print(response.text)
+
+
+# 5. Deleting pixel with DELETE
+pixel_delete_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/20220828"
+
+
+response = requests.delete(url=pixel_delete_endpoint, headers=headers)
 print(response.text)
+
+
