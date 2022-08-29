@@ -1,6 +1,5 @@
-# Passwords for being able sending emails
-passwords.txt
-api_key.txt
+# Storing API keys, Passwords etc. 
+.env
 
 
 # Byte-compiled / optimized / DLL files
