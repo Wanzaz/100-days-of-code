@@ -6,11 +6,15 @@ import json
 import smtplib
 import requests
 
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
+
+
 OWN_Endpoint = "https://api.openweathermap.org/data/3.0/onecall"
-API_KEY = os.environ.get("OWN_API_KEY")
+API_KEY = os.environ.get("OW_API_KEY")
 MY_LON = -118.24
 MY_LAT = 34.052
-EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+EMAIL_PASSWORD = os.environ.get("EMAIL_WANZAZ_PASSWORD")
 EMAIL_SENDER = "wanzaz.contact@gmail.com"
 EMAIL_RECEIVER = "wanzaz.contact@gmail.com"
 

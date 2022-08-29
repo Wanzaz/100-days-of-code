@@ -6,14 +6,17 @@ import smtplib
 import requests
 from datetime import datetime
 
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
+
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 AV_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
-PRICE_API_KEY = os.environ.get("ALPHA_VANTAGE_API_KEY")
-NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
-EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+PRICE_API_KEY = os.environ.get("AV_STOCK_API_KEY")
+NEWS_API_KEY = os.environ.get("NEWS_WANZAZ_API_KEY")
+EMAIL_PASSWORD = os.environ.get("EMAIL_WANZAZ_PASSWORD")
 EMAIL_SENDER = "wanzaz.contact@gmail.com"
 EMAIL_RECEIVER = "wanzaz.contact@gmail.com"
 
@@ -26,9 +29,9 @@ price_parameters = {
 response = requests.get(url=AV_ENDPOINT, params=price_parameters)
 stock_data = response.json()
 
-before_yesterday = datetime.now().day - 3
+before_yesterday = datetime.now().day - 4
 before_yesterday_date = datetime.today().strftime(f"%Y-%m-{before_yesterday}")
-yesterday = datetime.now().day - 2
+yesterday = datetime.now().day - 3
 yesterday_date = datetime.today().strftime(f"%Y-%m-{yesterday}")
 
 # Prices closed before yesterday and yesterday
@@ -41,7 +44,7 @@ decrease = (price_b4_yda - price_yda) / price_b4_yda * 100
 increase = (price_yda - price_b4_yda) / price_yda * 100
 difference, status = (round(increase, 1), "up") if increase > decrease else (round(decrease, 1), "down")
 
-if difference > 5:
+if difference > 2:
     news_parameters = {
         "q": COMPANY_NAME,
         "apiKey": NEWS_API_KEY,
