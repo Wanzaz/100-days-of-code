@@ -55,6 +55,6 @@ if difference > 5:
         connection.sendmail(
             from_addr=EMAIL_SENDER,
             to_addrs=EMAIL_RECEIVER,
-            msg=f"Subject:Tesla Stock News\n\nTSLA: {difference} % {status}\nHeadline: {news_data['title']} \nBrief: {news_data['description']}\nLink: {news_data['url']}")
+            msg=f"Subject:Tesla Stock News\n\n{STOCK}: {difference} % {status}\nHeadline: {news_data['title']} \nBrief: {news_data['description']}\nLink: {news_data['url']}")
 
 
