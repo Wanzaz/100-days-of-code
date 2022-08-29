@@ -31,22 +31,10 @@ before_yesterday_date = datetime.today().strftime(f"%Y-%m-{before_yesterday}")
 yesterday = datetime.now().day - 2
 yesterday_date = datetime.today().strftime(f"%Y-%m-{yesterday}")
 
-# Highest and Lowest prices of before yesterday and yesterday
-# low_price_b4_yda = float(stock_data["Time Series (Daily)"][before_yesterday_date]["3. low"])
-# high_price_b4_yda = float(stock_data["Time Series (Daily)"][before_yesterday_date]["2. high"])
-# low_price_yda = float(stock_data["Time Series (Daily)"][yesterday_date]["3. low"])
-# high_price_yda = float(stock_data["Time Series (Daily)"][yesterday_date]["2. high"])
-# print(f"Lowest prices: \n  before yesterday: {low_price_b4_yda} \n  yesterday: {low_price_yda} \nHighest Prices: \n  before yesterday: {high_price_b4_yda}\n  yesterday: {high_price_yda}")
-
 # Prices closed before yesterday and yesterday
 price_b4_yda = float(stock_data["Time Series (Daily)"][before_yesterday_date]["4. close"])
 price_yda = float(stock_data["Time Series (Daily)"][yesterday_date]["4. close"])
 print(f"TSLA price before yesterday: {price_b4_yda}$\nTSLA price yesterday: {price_yda}$")
-
-# Differences between highs and lows during the two days
-# decrease = (high_price_b4_yda - low_price_yda) / high_price_b4_yda * 100
-# increase = (high_price_yda - low_price_b4_yda) / high_price_yda * 100
-# biggest_diff, emoji = (increase, "🔺") if increase > decrease else (decrease, "🔻")
 
 # Differences between closed prices
 decrease = (price_b4_yda - price_yda) / price_b4_yda * 100
@@ -68,4 +56,5 @@ if difference > 5:
             from_addr=EMAIL_SENDER,
             to_addrs=EMAIL_RECEIVER,
             msg=f"Subject:Tesla Stock News\n\nTSLA: {difference} % {status}\nHeadline: {news_data['title']} \nBrief: {news_data['description']}\nLink: {news_data['url']}")
+
 
