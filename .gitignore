@@ -1,6 +1,8 @@
 # Storing API keys, Passwords etc. 
 .env
 
+# Apple macOS
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
