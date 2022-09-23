@@ -1,0 +1,6 @@
+CSS Notes
+
+selector {property: value;}
+who?	  what? 	how?
+
+
