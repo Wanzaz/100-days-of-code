@@ -1,0 +1,21 @@
+/* CSS = Cascading Style Sheets */ 
+body {
+	background-color: #B7C4CF;
+}
+
+h1 {
+	color: #967E76;
+}
+
+h3 {
+	color: #967E76;
+}
+
+hr {
+	border-style: none;
+	border-top-style: dotted;
+	border-color: grey;
+	border-width: 5px;
+	width: 5%;
+}
+
