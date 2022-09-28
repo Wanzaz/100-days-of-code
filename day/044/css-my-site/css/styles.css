@@ -1,35 +1,67 @@
+/* Common Inline Elements: */
+/* 	Spans (<span>) */
+/* 	Images (<img>) */
+/* 	Anchors (<a>) */
+
+/* Display: Block, Inline, Inline-Block, None */
+/* visibility: hidden; */
+
+/* Static and Relative CSS Positioning */
+	/* 1. Content is Everything */
+	/* 2. Order Comes From Code */
+	/* 3. Children Sit On Parents */
+
+/* Position: Static, Relative, Absolute, Fixed */
+/* Coordinates: Top Bottom Left Right */
+
 body {
 	margin: 0;
+	text-align: center;
 }
 
 h1 {
 	margin-top: 0;
-}
-
-div {
-	background-color:
+	/* width: 10%; */
+	/* margin: 0 auto 0 auto; /*0 auto*/*/
 }
 
 .top-container {
 	background-color: #E4F9F5;
-	height: 200px;
-	border: solid 10px;
-	padding: 20px;
-	width: 200px;
+	position: relative;
+	padding: 100px;
+	/* padding: 20px; */
+	/* display: inline-block; */
 }
 
-.middle-container {
-	background-color: red;
-	border: solid 20px;
-	height: 200px;
-	margin-left: 260px;
-	width: 200px;
+/* .middle-container { */
+/* 	background-color: red; */
+/* 	border: solid 20px; */
+/* 	height: 200px; */
+/* 	margin-left: 260px; */
+/* 	width: 200px; */
+/* } */
+
+/* .bottom-container { */
+/* 	background-color: yellow; */
+/* 	border: solid 10px; */
+/* 	height: 200px; */
+/* 	margin-left: 500px; */
+/* 	width: 200px; */
+/* } */
+
+.pro {
+	text-decoration: underline;
 }
 
-.bottom-container {
-	background-color: yellow;
-	border: solid 10px;
-	height: 200px;
-	margin-left: 500px;
-	width: 200px;
+.top-cloud {
+	position: absolute;	
+	right: 300px;
+	top: 50px;
 }
+
+.bottom-cloud {
+	position: absolute;	
+	left: 300px;
+	bottom: 400px;
+}
+
