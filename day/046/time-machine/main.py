@@ -19,8 +19,8 @@ REDIRECT_URI = os.environ.get("SPOTIPY_REDIRECT_URI")
 CACHE = ".cache"
 SCOPE = "playlist-modify-private"
 
-# logger = logging.getLogger('examples.create_playlist')
-# logging.basicConfig(level='DEBUG')
+logger = logging.getLogger('examples.create_playlist')
+logging.basicConfig(level='DEBUG')
 
 
 def validate(date_text):
@@ -108,7 +108,7 @@ def main():
 
     print(len(spotify_song_uris))
 
-    my_playlist = sp.user_playlist_create(
+    playlist = sp.user_playlist_create(
                                       user=f"{user_id}",
                                       name=f"{travel_to_date[:4]} Billboard Top Tracks",
                                       public=False,
@@ -117,11 +117,13 @@ def main():
     
 
     # Adding songs to playlist
+    playlist_id = playlist["id"]
+    sp.user_playlist_add_tracks(user=user_id, playlist_id=playlist_id, tracks=spotify_song_uris)
+
     # playlist_id = sp.user_playlists(user=user_id)["items"][0]["id"]
     # playlist_id = sp.user_playlists(user=user_id)["items"][0]
     # print(playlist_id)
 
-    # sp.user_playlist_add_tracks(user=user_id, playlist_id=playlist_id, tracks=spotify_song_uris)
 
 
 if __name__ == "__main__":
