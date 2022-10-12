@@ -19,8 +19,8 @@ REDIRECT_URI = os.environ.get("SPOTIPY_REDIRECT_URI")
 CACHE = ".cache"
 SCOPE = "playlist-modify-private"
 
-logger = logging.getLogger('examples.create_playlist')
-logging.basicConfig(level='DEBUG')
+# logger = logging.getLogger('examples.create_playlist')
+# logging.basicConfig(level='DEBUG')
 
 
 def validate(date_text):
