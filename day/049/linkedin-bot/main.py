@@ -6,6 +6,7 @@ import threading
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+# from selenium.common.exceptions import NoSuchElementException
 
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
@@ -30,6 +31,9 @@ enter_password = driver.find_element(By.ID, "password").send_keys(LINKEDIN_PASSW
 sing_up_button = driver.find_element(By.XPATH, '//*[@id="organic-div"]/form/div[3]/button')
 sing_up_button.click()
 
+# Saving jobs
+save_button = driver.find_element(By.XPATH, '//*[@id="main"]/div/section[2]/div/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div[3]/div/button')
+save_button.click()
 
 
-# driver.quit()
+driver.quit()
