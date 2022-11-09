@@ -6,6 +6,8 @@ import threading
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait      
+from selenium.webdriver.support import expected_conditions as EC
 # from selenium.common.exceptions import NoSuchElementException
 
 from dotenv import load_dotenv, find_dotenv
@@ -24,7 +26,7 @@ sign_in_button = driver.find_element(By.XPATH, "/html/body/div[3]/header/nav/div
 sign_in_button.click()
 
 # Wait for the next page to load.
-time.sleep(5)
+time.sleep(3)
 
 enter_email = driver.find_element(By.ID, "username").send_keys(LINKEDIN_EMAIL)
 enter_password = driver.find_element(By.ID, "password").send_keys(LINKEDIN_PASSWORD)
@@ -32,8 +34,11 @@ sing_up_button = driver.find_element(By.XPATH, '//*[@id="organic-div"]/form/div[
 sing_up_button.click()
 
 # Saving jobs
+jobs = driver.find_elements(By.CSS_SELECTOR, ".job-card-list__insight")
 save_button = driver.find_element(By.XPATH, '//*[@id="main"]/div/section[2]/div/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div[3]/div/button')
-save_button.click()
 
+for job in jobs:
+    WebDriverWait(driver, 20).until(EC.element_to_be_clickable(job)).click()
+    WebDriverWait(driver, 20).until(EC.element_to_be_clickable(save_button)).click()
 
 driver.quit()
