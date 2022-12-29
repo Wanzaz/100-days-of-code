@@ -22,7 +22,7 @@ IG_USC_LINK = f"https://www.instagram.com/{SIMILIAR_ACCOUNT}"
 class InstaFollower:
     def __init__(self) -> None:
         self.chrome_options = Options()
-        # self.chrome_options.add_argument("--incognito")
+        self.chrome_options.add_argument("--incognito")
         # self.chrome_options.add_experimental_option("detach", True) #for interactive testing
         self.s = Service(ChromeDriverManager().install())
         self.driver = webdriver.Chrome(service=self.s, options=self.chrome_options)
@@ -56,13 +56,8 @@ class InstaFollower:
         following = self.driver.find_element(By.PARTIAL_LINK_TEXT, "following")
         following.click()
         sleep(3)
-        # scroll = self.driver.find_element(By.CLASS_NAME, "_aano")
-        # self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", scroll)
 
-        # pop_up_window = self.driver.find_element(By.XPATH, '/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div')
         pop_up_window = self.driver.find_element(By.XPATH, '/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]')
-        # pop_up_window = self.driver.find_element(By.XPATH, '/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/div[1]/div/div[2]')
-        # pop_up_window.send_keys(Keys.END)
   
         while True:
             self.driver.execute_script(
