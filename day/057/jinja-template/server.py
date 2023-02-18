@@ -28,15 +28,16 @@ def guess(name):
 
     return render_template("guess.html", name=name, age=age_data, gender=gender_data)
 
-@app.route('/blog')
-def blog():
+@app.route('/blog/<num>')
+def get_blog(num):
+    print(num)
     response = requests.get(url=NPOINT_ENDPOINT)
     all_posts = response.json()
 
     return render_template("blog.html", posts=all_posts)
 
 
-wb.open_new_tab('http://127.0.0.1:5000/blog')
+wb.open_new_tab('http://127.0.0.1:5000')
 
 if __name__ == "__main__":
     # Run the app in debug mode to auto-reload

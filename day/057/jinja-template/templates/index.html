@@ -8,8 +8,9 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <h2>{{5 * 6}}</h2> <!-- seen as a python code instead of hmtl code thanks to jinja -->
-        <h3>{{num}}</h3>
+        <h2>{{ 5 * 6 }}</h2> <!-- seen as a python code instead of hmtl code thanks to jinja -->
+        <h3>Random number: {{ num }}</h3>
+        <a href="{{ url_for('get_blog', num=3) }}">Go to Blog</a>
     </body>
     <footer>
         <p>@ Copyright {{ year }}, Created by Ondrej</p>
