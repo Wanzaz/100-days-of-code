@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 AGIFY_ENDPOINT = "https://api.agify.io?name="
 GENDERIZE_ENDPOINT = "https://api.genderize.io?name="
+NPOINT_ENDPOINT = "https://api.npoint.io/c790b4d5cab58020d391"
 
 @app.route('/')
 def home():
@@ -27,7 +28,15 @@ def guess(name):
 
     return render_template("guess.html", name=name, age=age_data, gender=gender_data)
 
-wb.open_new_tab('http://127.0.0.1:5000/guess/Anne')
+@app.route('/blog')
+def blog():
+    response = requests.get(url=NPOINT_ENDPOINT)
+    all_posts = response.json()
+
+    return render_template("blog.html", posts=all_posts)
+
+
+wb.open_new_tab('http://127.0.0.1:5000/blog')
 
 if __name__ == "__main__":
     # Run the app in debug mode to auto-reload
